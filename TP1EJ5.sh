@@ -82,18 +82,19 @@ do
             Abandonaron[$materia]=0
         fi
         
-        #BORRAR ESTO
-        echo "DNI: ${nuevoArray[0]}"
-        echo "Materia: ${nuevoArray[1]}"
-        echo "Nota parcial 1: ${nuevoArray[2]}"
-        echo "Nota parcial 2: ${nuevoArray[3]}"
-        echo "Rinde recuperatorio: ${nuevoArray[4]}"
-        echo "Nota Recuperatorio: ${nuevoArray[5]}"
-        echo "Nota Final: ${nuevoArray[6]}"
+        #COMENTAR ESTO
+        #echo "DNI: ${nuevoArray[0]}"
+        #echo "Materia: ${nuevoArray[1]}"
+        #echo "Nota parcial 1: ${nuevoArray[2]}"
+        #echo "Nota parcial 2: ${nuevoArray[3]}"
+        #echo "Rinde recuperatorio: ${nuevoArray[4]}"
+        #echo "Nota Recuperatorio: ${nuevoArray[5]}"
+        #echo "Nota Final: ${nuevoArray[6]}"
+        #echo 
 
         if [[ ! -z "${nuevoArray[6]}" ]]; then  #Reviso si tiene nota en el final
            if [ ${nuevoArray[6]} -gt 3 ]; then  #Si tiene nota en el final, reviso si es mayor o igual a 4
-                let "a++"                       #Si se cumple, no es necesario guardarla 
+                let "a++"                       #Si se cumple, no es necesario guardarla
            else
                 Recursan[$materia]=$((${Recursan[$materia]}+1)) #si no se cumple, el alumno recursa
            fi   
@@ -124,9 +125,9 @@ do
                 else    #Si llegò hasta acá, el alumno no abandonó
                     if [ ${nuevoArray[2]} -gt 6 -a ${nuevoArray[3]} -gt 6 ]; then #Si la nota de ambos es mayor a 6, no lo guardo
                         let "a++"
-                    elif [ ${nuevoArray[2]} -lt 4 -a ${nuevoArray[5]} -lt 4 ]; then #Si la nota los dos es menor a 4, recursa
+                    elif [ ${nuevoArray[2]} -lt 4 -a ${nuevoArray[3]} -lt 4 ]; then #Si la nota los dos es menor a 4, recursa
                         Recursan[$materia]=$((${Recursan[$materia]}+1))
-                    elif [ ${nuevoArray[2]} -lt 4 -o ${nuevoArray[5]} -lt 4 ]; then #Si la nota de solo uno de los dos es menor a 4, recupera
+                    elif [ ${nuevoArray[2]} -lt 4 -o ${nuevoArray[3]} -lt 4 ]; then #Si la nota de solo uno de los dos es menor a 4, recupera
                         Recuperan[$materia]=$((${Recuperan[$materia]}+1))
                     else                #Si llegó hasta acá, en los dos parciales sacó más de 3 pero menos de 7
                         Final[$materia]=$((${Final[$materia]}+1))
@@ -134,13 +135,11 @@ do
                 fi
             fi
         fi
-        echo "----"
     fi
 done
 
 string='"Materia","Final","Recursa","Recuperan","Abandonaron"'
-echo $string
-#echo $string > salida.out
+echo $string > salida.out
 
 for subject in ${materias[@]}
 do
@@ -161,5 +160,5 @@ do
     string+=${Abandonaron[$subject]}
     string+='",'
     linea=`echo $string | sed 's/.$//g'`
-    echo $linea
+    echo $linea >> salida.out
 done
