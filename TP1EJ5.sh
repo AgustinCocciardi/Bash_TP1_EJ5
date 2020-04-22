@@ -69,6 +69,7 @@ do
                 seRepitio=0
             fi
         done
+
         if [ $seRepitio -eq 1 ];then
             materias[$cantmaterias]+=$materia
             let "cantmaterias++"
@@ -86,10 +87,9 @@ do
         echo "Materia: ${nuevoArray[1]}"
         echo "Nota parcial 1: ${nuevoArray[2]}"
         echo "Nota parcial 2: ${nuevoArray[3]}"
+        echo "Rinde recuperatorio: ${nuevoArray[4]}"
         echo "Nota Recuperatorio: ${nuevoArray[5]}"
         echo "Nota Final: ${nuevoArray[6]}"
-        echo "----"
-        sleep 5
 
         if [[ ! -z "${nuevoArray[6]}" ]]; then  #Reviso si tiene nota en el final
            if [ ${nuevoArray[6]} -gt 3 ]; then  #Si tiene nota en el final, reviso si es mayor o igual a 4
@@ -99,7 +99,7 @@ do
            fi   
         else                                    #Si llego hasta acà, el alumno no tiene nota en el final
             if [[ ! -z "${nuevoArray[4]}" ]]; then  #Pregunto si tiene nota en el recuperatorio
-                if [ ${nuevoArray[6]} -eq 1 ]; then #Si tiene nota, pregunto si es en el primero
+                if [ ${nuevoArray[4]} -eq 1 ]; then #Si tiene nota, pregunto si es en el primero
                     if [ ${nuevoArray[3]} -gt 6 -a ${nuevoArray[5]} -gt 6 ]; then #Si la nota de ambos es mayor a 6, no lo guardo
                         let "a++"
                     elif [ ${nuevoArray[3]} -lt 4 -o ${nuevoArray[5]} -lt 4 ]; then #Si la nota de uno de los dos es menor a 4, recursa
@@ -134,6 +134,7 @@ do
                 fi
             fi
         fi
+        echo "----"
     fi
 done
 
