@@ -1,11 +1,10 @@
 # Bash_TP1_EJ5
 Ejercicio 5 de Bash. Todavía tiene algunos bugs
 
-Bugs:
+Errores:
 
-línea 102: [: -eq: se esperaba un operador unario
+Parcial 1 y Parcial 2 desaprobado. Da Final y debería dar Recursa
 
-línea 111: [: demasiados argumentos
+Parcial 1 desaprobado y Parcial 2 aprobado. Da Final y debería dar Recupera
 
-línea 113: [: demasiados argumentos
-
+Parcial 1 aprobado y Parcial 2 desaprobado. Da Final y debería dar Recupera
