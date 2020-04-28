@@ -20,7 +20,7 @@ if [ $# -ne 2 ]; then
 fi
 
 if  [ $1 != "-f" ];then
-    echo "El segundo parámetro debe ser '-f'"
+    echo "El primer parámetro debe ser '-f'"
     exit 2
 fi
 
